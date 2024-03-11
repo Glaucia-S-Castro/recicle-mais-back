@@ -5,7 +5,7 @@ import { UserDTO } from './user.dto';
 export type User = any;
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   async create(@Body() data: UserDTO) {
@@ -13,5 +13,5 @@ export class UserController {
   }
 
 
-  
+
 }

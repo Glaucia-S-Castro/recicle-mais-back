@@ -9,4 +9,4 @@ import { DeleteUserModule } from './modules/deleteUser/delete.user.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

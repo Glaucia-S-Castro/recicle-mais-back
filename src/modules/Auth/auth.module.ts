@@ -7,10 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from '../../utils/jwt.config';
 
 @Module({
-  imports: [
-    JwtModule.register(jwtConstants)
-  ],
+  imports: [JwtModule.register(jwtConstants)],
   controllers: [AuthController],
   providers: [AuthService, UserService, PrismaService],
 })
-export class AuthModule { }
+export class AuthModule {}

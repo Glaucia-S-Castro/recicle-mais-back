@@ -7,6 +7,7 @@ import { UserDTO } from './user.dto';
 export type User = any;
 @Injectable()
 export class UserService {
+  private readonly saltOrRounds = 10;
   constructor(private prisma: PrismaService) {}
 
   async createUser(data: UserDTO) {

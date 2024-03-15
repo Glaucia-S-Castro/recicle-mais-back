@@ -11,8 +11,6 @@ import {
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 
-
-
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -26,12 +24,11 @@ export class AuthController {
       return { token };
     } catch (error) {
       throw new HttpException('Credenciais inválidas', HttpStatus.UNAUTHORIZED);
-    } 
+    }
   }
 
-  
   @Get('profile')
-  @UseGuards(AuthGuard) 
+  @UseGuards(AuthGuard)
   showUser(@Request() req) {
     return req.user;
   }

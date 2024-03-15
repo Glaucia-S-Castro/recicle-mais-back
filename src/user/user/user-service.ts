@@ -6,7 +6,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { isEmail } from 'class-validator';
 import { PrismaService } from 'src/database/PrismaService';
-import { UserDTO } from './user.dto';
+import { UserDTO } from './user-dto';
 
 export type User = any;
 @Injectable()

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { UpdatePassService } from './update.pass.service';
+import { UpdatePassService } from './update-pass-service';
 import { PrismaService } from 'src/database/PrismaService';
-import { UpdatePassController } from './update.pass.controller';
+import { UpdatePassController } from './update-pass-controller';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({

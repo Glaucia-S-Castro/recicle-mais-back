@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Headers } from '@nestjs/common';
-import { UpdatePassService } from './update.pass.service';
+import { UpdatePassService } from './update-pass-service';
 
 @Controller('updatePass')
 export class UpdatePassController {

@@ -46,6 +46,7 @@ npm run start:dev
 - [Nest]
 - [JWT]
 - [bcrypt]
+- [Prisma]
 
 <h3>Cloning</h3>
 
@@ -101,7 +102,7 @@ To register user.
   "email": "zedamanga@gmail.com",
   "phone": "71933333333",
   "user_type": "coletor",
-  "avatar": "qualquer"
+  "avatar": "any"
 }
 ```
 
@@ -109,7 +110,7 @@ To register user.
 To delete user.
 
 **REQUEST**
-/delete-ser/2
+/delete-user/2
 
 **RESPONSE**
 

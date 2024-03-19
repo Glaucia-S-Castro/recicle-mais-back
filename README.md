@@ -69,12 +69,13 @@ npm run start:dev
 
 Here has the list of the main routes until now, and what are their expected request bodies.
 ​
-| route | description  
+| ROUTE | DESCRIPTION  
 |----------------------|-----------------------------------------------------
 | <kbd>POST /user</kbd> | register user
+| <kbd>POST /auth/login</kbd> | user Login 
+| <kbd>PUT /update-user</kbd> | update user
+| <kbd>PUT/update-password</kbd> | update user password 
 | <kbd>DELETE /delete-user/:id</kbd> | delete selected user 
-| <kbd>POST /auth/login</kbd> | User Login 
-| <kbd>POST /updatePass/update-password</kbd> | Update user password 
 
 <h3 id="post-user-register">POST /user</h3>
 To register user.
@@ -83,9 +84,9 @@ To register user.
 
 ```json
 {
-  "fullname": "Zé da Manga",
+  "fullname": "Carlos Caldeira",
   "password": "123456",
-  "email": "zedamanga@gmail.com",
+  "email": "carloscaldeira@gmail.com",
   "phone": "71933333333",
   "user_type": "coletor",
   "avatar": "any"
@@ -97,25 +98,13 @@ To register user.
 ```json
 {
   "id": 2,
-  "fullname": "Zé da Manga",
+  "fullname": "Carlos Caldeira",
   "password": "$2b$10$0vYiRJL73/tBV2CStfGXz.sPvd2zHXBM8LIqnLNgZGexZm4u48vUq",
-  "email": "zedamanga@gmail.com",
+  "email": "carloscaldeira@gmail.com",
   "phone": "71933333333",
   "user_type": "coletor",
   "avatar": "any"
 }
-```
-
-<h3 id="delete-user">DELETE /delete-ser/:id</h3>
-To delete user.
-
-**REQUEST**
-/delete-user/2
-
-**RESPONSE**
-
-```bash
-Usuário removido com sucesso.
 ```
 
 <h3 id="auth-login">POST   /auth/login</h3>
@@ -125,7 +114,7 @@ To log in and receive an authentication token.
 
 ```json
 {
-  "email": "zedamanga@gmail.com",
+  "email": "carloscaldeira@gmail.com",
   "password": "123456"
 }
 ```
@@ -138,13 +127,42 @@ To log in and receive an authentication token.
 }
 ```
 
-<h3 id="update-password">POST   /updatePass/update-password</h3>
+<h3 id="update-user">POST   /update-user</h3>
 
 **REQUEST**
 
 ```json
 {
-  "email": "zedamanga@gmail.com",
+  "fullname": "Carlos Luiz Barbosa",
+  "password": "123456",
+  "email": "carloscaldeira@gmail.com",
+  "phone": "71933333333",
+  "user_type": "coletor",
+  "avatar": "any"
+}
+```
+
+**RESPONSE**
+
+```json
+{
+  "id": 2,
+  "fullname": "Carlos Luiz Barbosa",
+  "password": "$2b$10$0vYiRJL73/tBV2CStfGXz.sPvd2zHXBM8LIqnLNgZGexZm4u48vUq",
+  "email": "carloscaldeira@gmail.com",
+  "phone": "71933333333",
+  "user_type": "coletor",
+  "avatar": "any"
+}
+```
+
+<h3 id="update-password">POST   /update-password</h3>
+
+**REQUEST**
+
+```json
+{
+  "email": "carloscaldeira@gmail.com",
   "newPassword": "123456"
 }
 ```
@@ -156,8 +174,23 @@ To log in and receive an authentication token.
   "message": "Senha atualizada com sucesso."
 }
 ```
+<h3 id="delete-user">DELETE /delete-user/:id</h3>
+To delete user.
 
+
+**REQUEST**
+
+/delete-user/2
+
+**RESPONSE**
+
+```bash
+Usuário removido com sucesso.
+```
+
+---
 <h2 id="colab">🤝 Developores</h2>
+
 
 Back-end developers
 

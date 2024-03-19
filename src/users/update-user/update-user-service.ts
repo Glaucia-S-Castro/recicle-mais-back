@@ -16,10 +16,16 @@ export class UpdateUserService {
 
   async updateUser(
     authorization: string,
+    // email: string,
+    // newPassword: string,
+    fullname: string,
+    password: string,
     email: string,
-    newPassword: string,
+    phone: string,
+    user_type: string,
+    avatar: string
   ) {
-    if (!email || !newPassword) {
+    if (!email || !password) {
       throw new ConflictException({
         message: 'Preencha os campos email e/ou senha.',
       });
@@ -44,8 +50,10 @@ export class UpdateUserService {
         throw new UnauthorizedException({ message: 'Usuário não autorizado.' });
       }
 
+
+
       const saltOrRounds = 10;
-      const hash = await bcrypt.hash(newPassword, saltOrRounds);
+      const hash = await bcrypt.hash(password, saltOrRounds);
 
       await this.prisma.user.update({
         where: {

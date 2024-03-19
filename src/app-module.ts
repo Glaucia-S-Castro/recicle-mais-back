@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './users/user/user-module';
+import { UserModule } from './users/register-user/user-module';
 import { AuthModule } from './users/Auth/auth-module';
-import { UpdatePassModule } from './users/updatePass/update-pass-module';
-import { DeleteUserModule } from './users/deleteUser/delete-user-module';
+import { UpdateUserModule } from './users/update-user/update-user-module';
+import { UpdatePassModule } from './users/update-password-user/update-pass-module';
+import { DeleteUserModule } from './users/delete-user/delete-user-module';
 
 @Module({
-  imports: [UserModule, AuthModule, UpdatePassModule, DeleteUserModule],
+  imports: [UserModule, AuthModule, UpdateUserModule, UpdatePassModule, DeleteUserModule],
   controllers: [],
   providers: [],
 })

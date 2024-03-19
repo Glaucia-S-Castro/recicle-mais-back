@@ -28,18 +28,21 @@
   <b>Recicle mais is a recycling flow control app that allows, with practicality, agile communication between a recycler and a collector so that the materials to be recycled reach the collection point.</b>
 </p>
 
+
+<h2>Cloning</h2>
+
+How to clone your project
+
+```bash
+git clone git@github.com:yraffic02/recicle-mais-back.git
+
+```
+
 <h2> Install </h2>
 
 ```bash
 npm install
 ```
-
-<h2 id="started">🚀 Getting started</h2>
-
-```bash
-npm run start:dev
-```
-
 <h3>Prerequisites</h3>
 
 - [NodeJS]
@@ -48,20 +51,11 @@ npm run start:dev
 - [bcrypt]
 - [Prisma]
 
-<h3>Cloning</h3>
-
-How to clone your project
-
-```bash
-git clone git@github.com:yraffic02/recicle-mais-back.git
-```
-
-<h3>Starting</h3>
+<h2 id="started">🚀 Getting started</h2>
 
 How to start the back-end project
 
 ```bash
-cd recicle-mais-back
 npm run start:dev
 ```
 
@@ -69,10 +63,10 @@ npm run start:dev
 
 Here has the list of the main routes until now, and what are their expected request bodies.
 ​
-| ROUTE | DESCRIPTION  
+| ROUTES | DESCRIPTION  
 |----------------------|-----------------------------------------------------
 | <kbd>POST /user</kbd> | register user
-| <kbd>POST /auth/login</kbd> | user Login 
+| <kbd>POST /auth/login</kbd> | user login 
 | <kbd>PUT /update-user</kbd> | update user
 | <kbd>PUT/update-password</kbd> | update user password 
 | <kbd>DELETE /delete-user/:id</kbd> | delete selected user 

@@ -1,11 +1,12 @@
-import { Controller, Post, Body, Headers } from '@nestjs/common';
-import { UpdatePassService } from './update.pass.service';
-
+import { Controller, Put, Body, Headers } from '@nestjs/common';
+import { UpdatePassService } from './update-pass-service';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags("updatePass")
 @Controller('updatePass')
 export class UpdatePassController {
-  constructor(private readonly updatePassService: UpdatePassService) {}
+  constructor(private readonly updatePassService: UpdatePassService) { }
 
-  @Post('update-password')
+  @Put('update-password')
   async updatePassword(
     @Headers('authorization') authorization: string,
     @Body('email') email: string,

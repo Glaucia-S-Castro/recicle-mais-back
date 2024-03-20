@@ -1,6 +1,7 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { DeleteUserService } from './delete.user.service';
-
+import { DeleteUserService } from './delete-user-service';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags("Delete-user")
 @Controller('delete-user')
 export class DeleteUserController {
   constructor(private readonly deleteUserService: DeleteUserService) {}

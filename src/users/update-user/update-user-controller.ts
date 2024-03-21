@@ -1,6 +1,7 @@
 import { Controller, Body, Headers, Put } from '@nestjs/common';
 import { UpdateUserService } from './update-user-service';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags("UpdateUser")
 @Controller('updateUser')
 export class UpdateUserController {
   constructor(private readonly updateUserService: UpdateUserService) { }

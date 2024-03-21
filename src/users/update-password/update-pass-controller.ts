@@ -1,6 +1,7 @@
 import { Controller, Put, Body, Headers } from '@nestjs/common';
 import { UpdatePassService } from './update-pass-service';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags("updatePass")
 @Controller('updatePass')
 export class UpdatePassController {
   constructor(private readonly updatePassService: UpdatePassService) { }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './users/register-user/user-module';
-import { AuthModule } from './users/Auth/auth-module';
+import { UserModule } from './users/register-user/register-user-module';
+import { AuthModule } from './users/user-login/login-module';
 import { UpdateUserModule } from './users/update-user/update-user-module';
 import { UpdatePassModule } from './users/update-password/update-pass-module';
 import { DeleteUserModule } from './users/delete-user/delete-user-module';

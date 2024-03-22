@@ -66,7 +66,8 @@ Here has the list of the main routes until now, and what are their expected requ
 | ROUTES | DESCRIPTION  
 |----------------------|-----------------------------------------------------
 | <kbd>POST /user</kbd> | register user
-| <kbd>POST /auth/login</kbd> | user login 
+| <kbd>POST /login</kbd> | user login 
+| <kbd>POST /auth/profile</kbd> | show logged user
 | <kbd>PUT /update-user</kbd> | update user
 | <kbd>PUT/update-password</kbd> | update user password 
 | <kbd>DELETE /delete-user/:id</kbd> | delete selected user 

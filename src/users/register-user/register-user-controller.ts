@@ -14,8 +14,4 @@ export class UserController {
     return this.userService.createUser(data);
   }
 
-  // @Put()
-  // async update(@Body() data: UserDTO) {
-  //   return this.userService.updateUser(data);
-  // }
 }

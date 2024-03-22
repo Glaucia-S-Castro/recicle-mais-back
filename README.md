@@ -102,7 +102,7 @@ To register user.
 }
 ```
 
-<h3 id="auth-login">POST   /auth/login</h3>
+<h3 id="auth-login">POST   /login</h3>
 To log in and receive an authentication token.
 
 **REQUEST**

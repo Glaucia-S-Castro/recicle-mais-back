@@ -1,5 +1,5 @@
 export type UpdatePassDTO = {
-  id?: string;
+  id?: number;
   email: string;
   newPassword: string;
 };

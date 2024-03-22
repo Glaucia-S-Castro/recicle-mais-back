@@ -6,7 +6,7 @@ import { jwtConstants } from '../../utils/jwt-config';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async login(email: string, password: string): Promise<string | null> {
     const user = await this.prisma.user.findUnique({ where: { email } });

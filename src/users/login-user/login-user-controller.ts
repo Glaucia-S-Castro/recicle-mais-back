@@ -8,9 +8,9 @@ import {
   Get,
   Request,
 } from '@nestjs/common';
-import { AuthDTO } from '../user-login/user-login-dto'
-import { AuthService } from './user-login-service';
-import { AuthGuard } from './user-login-guard';
+import { AuthDTO } from './login-user-dto'
+import { AuthService } from './login-user-service';
+import { AuthGuard } from './login-user-guard';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags("login")

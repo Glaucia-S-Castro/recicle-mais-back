@@ -8,22 +8,24 @@ import {
   Get,
   Request,
 } from '@nestjs/common';
-
-import { AuthService } from './auth-service';
-import { AuthGuard } from './auth-guard';
+import { AuthDTO } from './login-user-dto'
+import { AuthService } from './login-user-service';
+import { AuthGuard } from './login-user-guard';
 import { ApiTags } from '@nestjs/swagger';
-@ApiTags("Auth")
-@Controller('auth')
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
 
-  @Post('login')
-  async login(@Body() credentials: { email: string; password: string }) {
-    const { email, password } = credentials;
+@ApiTags("login")
+@Controller('login')
+export class AuthController {
+  constructor(private readonly authService: AuthService) { }
+
+  @Post()
+  async login(@Body() credentials: AuthDTO) {
+
 
     try {
-      const token = await this.authService.login(email, password);
+      const token = await this.authService.login(credentials.email, credentials.password);
       return { token };
+
     } catch (error) {
       throw new HttpException('Credenciais inválidas', HttpStatus.UNAUTHORIZED);
     }

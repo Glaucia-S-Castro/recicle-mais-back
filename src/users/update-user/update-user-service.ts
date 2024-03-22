@@ -50,21 +50,24 @@ export class UpdateUserService {
         throw new UnauthorizedException({ message: 'Usuário não autorizado.' });
       }
 
-
-
       const saltOrRounds = 10;
       const hash = await bcrypt.hash(password, saltOrRounds);
 
       await this.prisma.user.update({
         where: {
-          email: email,
+          id: user.id,
         },
         data: {
+          fullname,
           password: hash,
+          email,
+          phone,
+          user_type,
+          avatar
         },
       });
 
-      return { message: 'Senha atualizada com sucesso.' };
+      return { message: 'Dados atualizados com sucesso' };
     } catch (error) {
       throw new UnauthorizedException({ message: 'Não autorizado.' });
     }

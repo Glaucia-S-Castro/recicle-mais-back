@@ -2,11 +2,11 @@ import { Controller, Put, Body, Headers } from '@nestjs/common';
 import { UpdatePassService } from './update-pass-service';
 import { ApiTags } from '@nestjs/swagger';
 @ApiTags("updatePass")
-@Controller('updatePass')
+@Controller('update-password')
 export class UpdatePassController {
   constructor(private readonly updatePassService: UpdatePassService) { }
 
-  @Put('update-password')
+  @Put()
   async updatePassword(
     @Headers('authorization') authorization: string,
     @Body('email') email: string,

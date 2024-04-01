@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "users" ALTER COLUMN "zip_code" SET DATA TYPE TEXT,
+ALTER COLUMN "phone" SET DATA TYPE TEXT;

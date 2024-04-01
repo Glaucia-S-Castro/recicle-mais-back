@@ -12,11 +12,11 @@ model User {
   fullname  String
   password  String
   email     String @unique
-  phone     Int
+  phone     String
   address   String
   city      String
   state     String
-  zip_code  Int
+  zip_code  String
   user_type String
   avatar    String
 

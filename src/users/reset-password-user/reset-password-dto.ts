@@ -1,8 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export type ResetPasswordDTO = {
+export class ResetPasswordDTO  {
 
-  password: string;
+  @ApiProperty({ example: 'example@example.com', description: 'Novo email do usuário' })
+
   email: string;
+
+  @ApiProperty({ example: 'string', description: 'Nova senha do usuário' })
+
+  newPassword: string;
 
 }

@@ -1,9 +1,8 @@
 import { Controller, Body, Headers, Put } from '@nestjs/common';
 import { UpdateUserService } from './update-user-service';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { UpdateUserDTO } from './update-user-dto';
-@ApiTags("Update user")
-
+@ApiTags("UpdateUser")
 @Controller('update-user')
 @ApiBearerAuth()
 export class UpdateUserController {
@@ -14,9 +13,16 @@ export class UpdateUserController {
 
   async updateUser(
     @Headers('authorization') authorization: string,
-    @Body() userData: UpdateUserDTO
-) {
-  return this.updateUserService.updateUser(authorization, userData);
-}
+    @Body() updateUserData: UpdateUserDTO,
+  ) {
+    return this.updateUserService.updateUser(
+      authorization,
+      updateUserData.fullname,
+      updateUserData.password,
+      updateUserData.email,
+      updateUserData.phone,
+      updateUserData.user_type,
+      updateUserData.avatar
+    );
   }
 

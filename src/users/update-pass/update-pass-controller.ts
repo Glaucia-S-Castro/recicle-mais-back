@@ -1,6 +1,7 @@
 import { Controller, Put, Body, Headers } from '@nestjs/common';
 import { UpdatePassService } from './update-pass-service';
 import { ApiTags } from '@nestjs/swagger';
+import { UpdatePassDTO } from './update-pass-dto';
 @ApiTags("updatePass")
 @Controller('update-password')
 export class UpdatePassController {
@@ -9,13 +10,12 @@ export class UpdatePassController {
   @Put()
   async updatePassword(
     @Headers('authorization') authorization: string,
-    @Body('email') email: string,
-    @Body('newPassword') newPassword: string,
+    @Body() updatePassData: UpdatePassDTO,
   ) {
     return this.updatePassService.updatePassword(
       authorization,
-      email,
-      newPassword,
+      updatePassData.email,
+      updatePassData.newPassword,
     );
   }
 }

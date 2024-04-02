@@ -1,14 +1,17 @@
 import { Body, Controller, Post, HttpException, HttpStatus } from '@nestjs/common';
 import { ResetService } from './reset-user-service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ResetPasswordDTO } from './reset-password-dto';
 
-@ApiTags("reset")
+@ApiTags("Reset password user")
 @Controller('reset-pass')
 export class ResetController {
   constructor(private readonly resetService: ResetService) { }
 
   @Post()
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Recuperação de senha', description: 'A recuperação de senha, valida o email do usuario e envia nova senha para o mesmo.' })
+ 
   async resetPassword(@Body() resetData: ResetPasswordDTO) {
     try {
       await this.resetService.ResetPassword(resetData.email);

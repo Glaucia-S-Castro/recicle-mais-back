@@ -32,9 +32,4 @@ export class AuthController {
     }
   }
 
-  @Get('profile')
-  @UseGuards(AuthGuard)
-  showUser(@Request() req) {
-    return req.user;
-  }
 }

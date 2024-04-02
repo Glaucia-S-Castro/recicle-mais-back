@@ -42,6 +42,7 @@ git clone git@github.com:yraffic02/recicle-mais-back.git
 
 ```bash
 npm install
+npx prisma generate
 ```
 <h3>Prerequisites</h3>
 

@@ -42,6 +42,7 @@ git clone git@github.com:yraffic02/recicle-mais-back.git
 
 ```bash
 npm install
+npx prisma generate
 ```
 <h3>Prerequisites</h3>
 
@@ -102,7 +103,7 @@ To register user.
 }
 ```
 
-<h3 id="auth-login">POST   /auth/login</h3>
+<h3 id="auth-login">POST   /login</h3>
 To log in and receive an authentication token.
 
 **REQUEST**

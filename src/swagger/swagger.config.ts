@@ -9,6 +9,7 @@ export function setupSwagger(app: INestApplication) {
   .addTag('Create user')
   .addTag('Login user')
   .addBearerAuth()
+  .addTag("Show User")
   .addTag('Update user')
   .addTag('Reset password user')
   .addTag('Delete user')

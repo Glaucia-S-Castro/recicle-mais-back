@@ -1,8 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export type AuthDTO = {
+export class AuthDTO {
 
-  password: string;
+  @ApiProperty({ example: 'example@example.com', description: 'Novo email do usuário' })
   email: string;
+
+  @ApiProperty({ example: 'string', description: 'Senha do usuário' })
+  password: string;
 
 }

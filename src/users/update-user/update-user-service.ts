@@ -16,8 +16,6 @@ export class UpdateUserService {
 
   async updateUser(
     authorization: string,
-    // email: string,
-    // newPassword: string,
     fullname: string,
     password: string,
     email: string,

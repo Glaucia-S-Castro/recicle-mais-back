@@ -1,5 +1,4 @@
-import { Controller, Delete, Body, Param } from '@nestjs/common';
-import { deleteUserDTO } from './delete-user-dto';
+import { Controller, Delete, Param, Headers } from '@nestjs/common';
 import { DeleteUserService } from './delete-user-service';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
@@ -10,11 +9,13 @@ export class DeleteUserController {
   constructor(private readonly deleteUserService: DeleteUserService) { }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Exclusão conta do usuário', description: 'Exclusão permanente, para concluir precisa confirmar frase de exclusão.' })
-  async remove(@Param('id') id: string, @Body() data: deleteUserDTO) {
+  @ApiOperation({ summary: 'Exclusão conta do usuário', description: 'Exclusão permanente da conta do usuário logado.' })
+  async remove(@Param('id') id: string, @Headers('authorization') authorization: string) {
+    console.log('Token JWT recebido:', authorization);
+
     await this.deleteUserService.deleteUser(
+      authorization,
       id,
-      data.confirmationPhrase
     );
     return `Usuário removido com sucesso.`;
   }

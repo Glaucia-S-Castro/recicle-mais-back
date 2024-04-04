@@ -1,50 +1,53 @@
-import { Injectable, ConflictException, BadRequestException, UnauthorizedException } from '@nestjs/common';
-import { PrismaService } from 'src/database/PrismaService';
-import { deleteUserDTO } from './delete-user-dto';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { PrismaService } from 'src/database/PrismaService';
 
 @Injectable()
 export class DeleteUserService {
-  constructor(private readonly prisma: PrismaService,
-    private readonly jwtService: JwtService) { }
+  constructor(
+    private prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) { }
 
-  async deleteUser(id: string, authorization: string, data: deleteUserDTO): Promise<void> {
+  async deleteUser(id: string, authorization: string) {
+    const token = authorization.split(' ')[1];
 
     try {
+      const payload = await this.validateToken(token)
 
-      const user = await this.prisma.user.findFirst({
-        where: { id: parseInt(id) }
-      });
+      console.log(payload)
 
-      const token = authorization.split(' ')[1];
-      const payload = this.validateToken(token);
-
-      // if (user.id !== payload.userId) {
-      //   throw new UnauthorizedException({ message: 'Usuário não autorizado.' });
-      // }
-
-
-      if (!data.confirmationPhrase) {
-        throw new BadRequestException({ message: 'Para exclusão da conta é obrigatório inserir a frase de confirmação de exclusão' });
+      if (!payload.userId) {
+        throw new NotFoundException('Usuário não encontrado');
       }
-      if (data.confirmationPhrase !== 'Excluir-minha-conta') {
-        throw new BadRequestException({ message: 'Para exclusão da conta é obrigatório inserir a frase de confirmação de exclusão' });
+
+      if (id !== payload.userId) {
+        throw new ConflictException('A solicitação não pôde ser concluída devido a um conflito, refaça o login e tente novamente');
       }
 
       await this.prisma.user.delete({
         where: {
-          id: parseInt(id),
+          id: payload.userId,
         },
       });
     } catch (error) {
-      throw new Error(`Erro ao excluir usuário: ${error.message}`);
+      if (error instanceof NotFoundException || error instanceof ConflictException) {
+        throw error;
+      } else {
+        throw new Error(`Erro ao excluir usuário: ${error.message}`);
+      }
     }
   }
+
   private async validateToken(token: string) {
     try {
+
       const payload = await this.jwtService.verify(token);
+      console.log('payload:', payload)
       return payload;
+
     } catch (error) {
+      console.log(error)
       throw new UnauthorizedException({
         message: 'Token inválido ou expirado.',
       });

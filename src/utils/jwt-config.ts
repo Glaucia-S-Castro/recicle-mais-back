@@ -1,4 +1,4 @@
 export const jwtConstants = {
-  secret: 'recicleMais',
+  secret: process.env.PASS_HASH,
   expiresIn: '24h',
 };

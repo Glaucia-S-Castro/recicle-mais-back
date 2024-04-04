@@ -9,7 +9,7 @@ export class DeleteUserService {
     private readonly jwtService: JwtService,
   ) { }
 
-  async deleteUser(id: string, authorization: string) {
+  async deleteUser(authorization: string) {
     const token = authorization.split(' ')[1];
 
     try {
@@ -21,9 +21,9 @@ export class DeleteUserService {
         throw new NotFoundException('Usuário não encontrado');
       }
 
-      if (id !== payload.userId) {
-        throw new ConflictException('A solicitação não pôde ser concluída devido a um conflito, refaça o login e tente novamente');
-      }
+      // if (id !== payload.userId) {
+      //   throw new ConflictException('A solicitação não pôde ser concluída devido a um conflito, refaça o login e tente novamente');
+      // }
 
       await this.prisma.user.delete({
         where: {

@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, NotFoundException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { PrismaService } from 'src/database/PrismaService';
@@ -12,13 +12,13 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      throw new HttpException('Credenciais inválidas', HttpStatus.UNAUTHORIZED);
+      throw new NotFoundException('Usuário não encontrado');
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      throw new HttpException('Credenciais inválidas', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('Email ou senha inválidos', HttpStatus.UNAUTHORIZED);
     }
 
     const token = jwt.sign(

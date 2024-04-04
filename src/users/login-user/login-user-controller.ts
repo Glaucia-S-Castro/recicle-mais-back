@@ -11,14 +11,15 @@ import {
 import { AuthDTO } from './login-user-dto'
 import { AuthService } from './login-user-service';
 import { AuthGuard } from './login-user-guard';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@ApiTags("login")
+@ApiTags("Login user")
 @Controller('login')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
   @Post()
+  @ApiOperation({ summary: 'Autenticação do  usuário', description: 'Criação do token de login.' })
   async login(@Body() credentials: AuthDTO) {
 
 
@@ -31,9 +32,4 @@ export class AuthController {
     }
   }
 
-  @Get('profile')
-  @UseGuards(AuthGuard)
-  showUser(@Request() req) {
-    return req.user;
-  }
 }

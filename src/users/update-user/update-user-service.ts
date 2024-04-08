@@ -11,32 +11,32 @@ export class UpdateUserService {
   constructor(
     private prisma: PrismaService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async updateUser(authorization: string, data: UpdateUserDTO) {
     const token = authorization.split(' ')[1];
-      const payload = this.validateToken(token);
+    const payload = this.validateToken(token);
 
     try {
 
       if (!payload.userId) {
         throw new UnauthorizedException({ message: 'Usuário não existe.' });
       }
-      
+
       if (!isEmail(data.email)) {
         throw new ConflictException({ message: 'Formato de e-mail inválido.' });
       }
-    
+
       const hash = data.password ? await bcrypt.hash(data.password, 10) : undefined;
 
-     await this.prisma.user.update({
+      await this.prisma.user.update({
         where: {
           id: payload.userId,
         },
         data: {
           fullname: data.fullname,
           email: data.email,
-          password: hash, 
+          password: hash,
           phone: data.phone,
           address: data.address,
           city: data.city,
@@ -46,22 +46,22 @@ export class UpdateUserService {
           avatar: data.avatar,
         },
       });
-     
+
       return { message: 'Dados atualizados com sucesso' };
     } catch (error) {
       const userExist = await this.prisma.user.findFirst({
         where: {
           email: data.email,
           id: {
-            not: payload.userId, 
+            not: payload.userId,
           },
         },
       });
       if (!!userExist.email) {
         throw new UnauthorizedException({ message: 'Este email já está sendo utilizado.' });
-      }  
-    
-      
+      }
+
+
       throw new UnauthorizedException({ message: 'Não autorizado.' });
     }
   }

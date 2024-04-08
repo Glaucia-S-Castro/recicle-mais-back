@@ -2,16 +2,14 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateUserDTO {
 
-  
   @ApiProperty({ example: 'string', description: 'Nome completo do usuario' })
-  fullname:string 
-  
-  @ApiProperty({  example: 'example@example.com', description: 'Email será usado para login' })
+  fullname: string
+
+  @ApiProperty({ example: 'example@example.com', description: 'Email será usado para login' })
   email: string;
 
   @ApiProperty({ example: 'string', description: 'Senha será usada para login' })
   password: string;
-
 
   @ApiProperty({ example: 'string', description: 'Número usado para contato' })
   phone: string;
@@ -33,6 +31,5 @@ export class UpdateUserDTO {
 
   @ApiProperty({ example: 'string', description: 'URL da imagem de avatar do usuário' })
   avatar: string;
-
 
 }

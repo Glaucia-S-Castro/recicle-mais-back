@@ -5,7 +5,6 @@ import { PrismaService } from 'src/database/PrismaService';
 import { UpdateUserDTO } from './update-user-dto';
 import { isEmail } from 'class-validator';
 
-
 @Injectable()
 export class UpdateUserService {
   constructor(
@@ -60,7 +59,6 @@ export class UpdateUserService {
       if (!!userExist.email) {
         throw new UnauthorizedException({ message: 'Este email já está sendo utilizado.' });
       }
-
 
       throw new UnauthorizedException({ message: 'Não autorizado.' });
     }

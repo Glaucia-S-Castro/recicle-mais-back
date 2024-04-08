@@ -1,5 +1,4 @@
 import {
-
   ConflictException,
   Injectable,
 } from '@nestjs/common';
@@ -8,7 +7,6 @@ import { isEmail } from 'class-validator';
 import { PrismaService } from 'src/database/PrismaService';
 import { UserDTO } from './register-user-dto';
 
-//export type User = any;
 @Injectable()
 export class UserService {
   private readonly saltOrRounds = 10;

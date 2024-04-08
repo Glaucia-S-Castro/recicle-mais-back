@@ -8,7 +8,7 @@ export class ShowUserService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async getUserByToken(authorization: string): Promise<User> {
     const token = authorization.split(' ')[1];

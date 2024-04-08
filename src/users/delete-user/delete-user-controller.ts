@@ -10,7 +10,7 @@ export class DeleteUserController {
   constructor(private readonly deleteUserService: DeleteUserService) { }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Exclusão conta do usuário', description: 'Exclusão permanente, para concluir precisa confirmar frase de exclusão.' })
+  @ApiOperation({ summary: 'Exclusão conta do usuário'})
   async remove(@Param('id') id: string, @Body() data: deleteUserDTO) {
     await this.deleteUserService.deleteUser(
       id,

@@ -6,10 +6,8 @@ import { DeleteUserModule } from './users/delete-user/delete-user-module';
 import { ResetModule } from './users/reset-password-user/reset-user-module';
 import { ShowUserModule } from './users/show-user/show-user-module';
 
-
-
 @Module({
-  imports: [UserModule, AuthModule, ResetModule, UpdateUserModule, DeleteUserModule, ResetModule,ShowUserModule ],
+  imports: [UserModule, AuthModule, ResetModule, UpdateUserModule, DeleteUserModule, ResetModule, ShowUserModule],
   controllers: [],
   providers: [],
 })

@@ -15,15 +15,9 @@ export class DeleteUserService {
     try {
       const payload = await this.validateToken(token)
 
-      console.log(payload)
-
       if (!payload.userId) {
         throw new NotFoundException('Usuário não encontrado');
       }
-
-      // if (id !== payload.userId) {
-      //   throw new ConflictException('A solicitação não pôde ser concluída devido a um conflito, refaça o login e tente novamente');
-      // }
 
       await this.prisma.user.delete({
         where: {
@@ -43,11 +37,9 @@ export class DeleteUserService {
     try {
 
       const payload = await this.jwtService.verify(token);
-      console.log('payload:', payload)
       return payload;
 
     } catch (error) {
-      console.log(error)
       throw new UnauthorizedException({
         message: 'Token inválido ou expirado.',
       });

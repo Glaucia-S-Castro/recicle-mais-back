@@ -6,14 +6,14 @@ export class MailerService {
   private apiKey: string;
 
   constructor() {
-    this.apiKey = process.env.SUA_API_KEY; 
+    this.apiKey = process.env.SUA_API_KEY;
   }
 
   async sendEmail(to: string, subject: string, html: string): Promise<void> {
     const payload = {
       from: {
 
-        email: 'MS_pK7BdD@trial-pq3enl6y8nrg2vwr.mlsender.net', 
+        email: 'MS_pK7BdD@trial-pq3enl6y8nrg2vwr.mlsender.net',
       },
       to: [
         {
@@ -32,7 +32,6 @@ export class MailerService {
         },
       });
 
-    
     } catch (error) {
       console.error('Erro ao enviar e-mail:', error.response.data);
       throw new Error('Erro ao enviar e-mail');

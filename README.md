@@ -43,6 +43,8 @@ git clone git@github.com:yraffic02/recicle-mais-back.git
 ```bash
 npm install
 npx prisma generate
+npx prisma migrate dev --name init
+npx prisma migrate dev
 ```
 <h3>Prerequisites</h3>
 
@@ -51,6 +53,8 @@ npx prisma generate
 - [JWT]
 - [bcrypt]
 - [Prisma]
+- [Cors]
+- [Swagger]
 
 <h2 id="started">🚀 Getting started</h2>
 
@@ -68,15 +72,16 @@ Here has the list of the main routes until now, and what are their expected requ
 |----------------------|-----------------------------------------------------
 | <kbd>POST /user</kbd> | register user
 | <kbd>POST /login</kbd> | user login 
-| <kbd>POST /auth/profile</kbd> | show logged user
+| <kbd>POST /user/profile</kbd> | show logged user
 | <kbd>PUT /update-user</kbd> | update user
-| <kbd>PUT/update-password</kbd> | update user password 
-| <kbd>DELETE /delete-user/:id</kbd> | delete selected user 
+| <kbd>PUT/reset-pass</kbd> | reset user password 
+| <kbd>DELETE /delete-user | delete selected user 
 
 <h3 id="post-user-register">POST /user</h3>
-To register user.
 
-**REQUEST**
+**To register user, example :**
+
+**BODY REQUEST**
 
 ```json
 {
@@ -85,7 +90,12 @@ To register user.
   "email": "carloscaldeira@gmail.com",
   "phone": "71933333333",
   "user_type": "coletor",
-  "avatar": "any"
+  "address":  "Rua Canario, nº 12",
+  "city": "São Paulo",
+  "state": "SP",
+  "zip_code": "04444-444",
+  "user_type": "cliente",
+  "avatar": "url/imagem"
 }
 ```
 
@@ -99,14 +109,20 @@ To register user.
   "email": "carloscaldeira@gmail.com",
   "phone": "71933333333",
   "user_type": "coletor",
-  "avatar": "any"
+  "address":  "Rua Canario, nº 12",
+  "city": "São Paulo",
+  "state": "SP",
+  "zip_code": "04444-444",
+  "user_type": "cliente",
+  "avatar": "url/imagem"
 }
 ```
 
-<h3 id="auth-login">POST   /login</h3>
-To log in and receive an authentication token.
+<h3 id="login">POST /login</h3>
 
-**REQUEST**
+**To log in and receive an authentication token, example:**
+
+**BODY REQUEST**
 
 ```json
 {
@@ -123,43 +139,47 @@ To log in and receive an authentication token.
 }
 ```
 
-<h3 id="update-user">POST   /update-user</h3>
+<h3 id="user/profile">GET /user/profile</h3>
 
-**REQUEST**
-
-```json
-{
-  "fullname": "Carlos Luiz Barbosa",
-  "password": "123456",
-  "email": "carloscaldeira@gmail.com",
-  "phone": "71933333333",
-  "user_type": "coletor",
-  "avatar": "any"
-}
-```
+**To show the logged in user profile.**
 
 **RESPONSE**
 
 ```json
-{
+
   "id": 2,
-  "fullname": "Carlos Luiz Barbosa",
+  "fullname": "Carlos Caldeira",
   "password": "$2b$10$0vYiRJL73/tBV2CStfGXz.sPvd2zHXBM8LIqnLNgZGexZm4u48vUq",
   "email": "carloscaldeira@gmail.com",
   "phone": "71933333333",
   "user_type": "coletor",
-  "avatar": "any"
-}
+  "address":  "Rua Canario, nº 12",
+  "city": "São Paulo",
+  "state": "SP",
+  "zip_code": "04444-444",
+  "user_type": "cliente",
+  "avatar": "url/imagem"
 ```
 
-<h3 id="update-password">POST   /update-password</h3>
+<h3 id="update-user">POST   /update-user</h3>
 
-**REQUEST**
+**To edit user information. Protected route the user must be logged in. Example:**
+
+**BODY REQUEST**
 
 ```json
 {
+  "fullname": "Carlos Caldeira",
+  "password": "123456",
   "email": "carloscaldeira@gmail.com",
-  "newPassword": "123456"
+  "phone": "71933333333",
+  "user_type": "coletor",
+  "address":  "Rua Canario, nº 12",
+  "city": "São Paulo",
+  "state": "SP",
+  "zip_code": "04444-444",
+  "user_type": "coletor",
+  "avatar": "url/imagem"
 }
 ```
 
@@ -167,16 +187,34 @@ To log in and receive an authentication token.
 
 ```json
 {
-  "message": "Senha atualizada com sucesso."
+ "message": "Dados atualizados com sucesso"
 }
 ```
-<h3 id="delete-user">DELETE /delete-user/:id</h3>
-To delete user.
 
+<h3 id="reset-pass">POST /reset-pass</h3>
 
-**REQUEST**
+**To request password reset. Protected route the user must be logged in. Example:**
 
-/delete-user/2
+**BODY REQUEST**
+
+```json
+{
+  "email": "carloscaldeira@gmail.com",
+}
+```
+
+**RESPONSE**
+
+```json
+{
+  "message": "Um e-mail com a nova senha foi enviado."
+}
+```
+
+<h3 id="delete-user">DELETE /delete-user</h3>
+
+**To delete user logged. Protected route the user must be logged in.** .
+
 
 **RESPONSE**
 

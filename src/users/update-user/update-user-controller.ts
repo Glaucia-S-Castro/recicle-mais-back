@@ -10,7 +10,7 @@ export class UpdateUserController {
   constructor(private readonly updateUserService: UpdateUserService) { }
 
   @Put()
-  @ApiOperation({ summary: 'Atualização perfil do usuário', description: 'Atualiza o dados do perfil.' })
+  @ApiOperation({ summary: 'Atualização perfil do usuário', description: 'Esta rota precisa inserir o token no Bearer (cadeado ao lado direito superior) e no campo authorization' })
 
   async updateUser(
     @Headers('authorization') authorization: string,

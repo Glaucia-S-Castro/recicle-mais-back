@@ -11,4 +11,4 @@ import { jwtConstants } from '../../utils/jwt-config';
   controllers: [AuthController],
   providers: [AuthService, UserService, PrismaService],
 })
-export class AuthModule { }
+export class AuthModule {}

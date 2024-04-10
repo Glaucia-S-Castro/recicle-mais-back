@@ -1,8 +1,4 @@
-import {
-
-  ConflictException,
-  Injectable,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { isEmail } from 'class-validator';
 import { PrismaService } from 'src/database/PrismaService';
@@ -12,7 +8,7 @@ import { UserDTO } from './register-user-dto';
 @Injectable()
 export class UserService {
   private readonly saltOrRounds = 10;
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async createUser(data: UserDTO) {
     if (!isEmail(data.email)) {
@@ -41,7 +37,7 @@ export class UserService {
         address: data.address,
         city: data.city,
         state: data.state,
-        zip_code: data.zip_code
+        zip_code: data.zip_code,
       },
     });
     const { ...newUser } = user;
@@ -52,5 +48,4 @@ export class UserService {
   async findOne(fullname: string): Promise<any | undefined> {
     return (await this.users).find((user) => user.fullname === fullname);
   }
-
 }

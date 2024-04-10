@@ -5,7 +5,6 @@ import { PrismaService } from 'src/database/PrismaService';
 import { jwtConstants } from 'src/utils/jwt-config';
 import { JwtModule } from '@nestjs/jwt';
 
-
 @Module({
   imports: [
     JwtModule.register({
@@ -16,4 +15,4 @@ import { JwtModule } from '@nestjs/jwt';
   controllers: [ShowUserController],
   providers: [ShowUserService, PrismaService],
 })
-export class ShowUserModule { }
+export class ShowUserModule {}

@@ -1,16 +1,20 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UserDTO {
-
   @ApiProperty({ example: 'string', description: 'Nome completo do usuario' })
-  fullname:string 
+  fullname: string;
 
-  @ApiProperty({ example: 'example@example.com', description: 'Email será usado para login' })
+  @ApiProperty({
+    example: 'example@example.com',
+    description: 'Email será usado para login',
+  })
   email: string;
 
-  @ApiProperty({ example: 'string', description: 'Senha será usada para login' })
+  @ApiProperty({
+    example: 'string',
+    description: 'Senha será usada para login',
+  })
   password: string;
-
 
   @ApiProperty({ example: 'string', description: 'Número usado para contato' })
   phone: string;
@@ -30,6 +34,9 @@ export class UserDTO {
   @ApiProperty({ example: 'string', description: 'Tipo de usuário' })
   user_type: string;
 
-  @ApiProperty({ example: 'string', description: 'URL da imagem de avatar do usuário' })
+  @ApiProperty({
+    example: 'string',
+    description: 'URL da imagem de avatar do usuário',
+  })
   avatar: string;
 }

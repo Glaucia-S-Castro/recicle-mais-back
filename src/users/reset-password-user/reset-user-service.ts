@@ -17,31 +17,28 @@ export class ResetService {
       throw new HttpException('Usuário não encontrado', HttpStatus.NOT_FOUND);
     }
 
-    
     const newPass = this.generateRandomPassword();
 
-    
     const hashedPassword = await bcrypt.hash(newPass, 10);
 
-    
     await this.prisma.user.update({
       where: { email },
       data: { password: hashedPassword },
     });
 
-   
     await this.sendNewPasswordByEmail(email, newPass);
   }
 
   private generateRandomPassword(): string {
-   
     const newPassword = Math.random().toString(36).slice(-8);
     return newPassword;
   }
 
-  private async sendNewPasswordByEmail(email: string, newPassword: string): Promise<void> {
+  private async sendNewPasswordByEmail(
+    email: string,
+    newPassword: string,
+  ): Promise<void> {
     try {
-     
       await this.mailerService.sendEmail(
         email,
         'Redefinição de Senha',
@@ -49,7 +46,10 @@ export class ResetService {
       );
     } catch (error) {
       console.error('Erro ao enviar e-mail:', error);
-      throw new HttpException('Erro ao enviar e-mail', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        'Erro ao enviar e-mail',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 }

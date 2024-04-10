@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/database/PrismaService';
@@ -14,7 +18,9 @@ export class ShowUserService {
     const token = authorization.split(' ')[1];
     const payload = this.validateToken(token);
 
-    const user = await this.prisma.user.findUnique({ where: { id: payload.userId } });
+    const user = await this.prisma.user.findUnique({
+      where: { id: payload.userId },
+    });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
     }

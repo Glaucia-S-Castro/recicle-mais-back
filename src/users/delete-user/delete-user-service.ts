@@ -1,4 +1,9 @@
-import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/database/PrismaService';
 
@@ -7,15 +12,15 @@ export class DeleteUserService {
   constructor(
     private prisma: PrismaService,
     private readonly jwtService: JwtService,
-  ) { }
+  ) {}
 
   async deleteUser(authorization: string) {
     const token = authorization.split(' ')[1];
 
     try {
-      const payload = await this.validateToken(token)
+      const payload = await this.validateToken(token);
 
-      console.log(payload)
+      console.log(payload);
 
       if (!payload.userId) {
         throw new NotFoundException('Usuário não encontrado');
@@ -31,7 +36,10 @@ export class DeleteUserService {
         },
       });
     } catch (error) {
-      if (error instanceof NotFoundException || error instanceof ConflictException) {
+      if (
+        error instanceof NotFoundException ||
+        error instanceof ConflictException
+      ) {
         throw error;
       } else {
         throw new Error(`Erro ao excluir usuário: ${error.message}`);
@@ -41,18 +49,14 @@ export class DeleteUserService {
 
   private async validateToken(token: string) {
     try {
-
       const payload = await this.jwtService.verify(token);
-      console.log('payload:', payload)
+      console.log('payload:', payload);
       return payload;
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       throw new UnauthorizedException({
         message: 'Token inválido ou expirado.',
       });
     }
   }
 }
-
-

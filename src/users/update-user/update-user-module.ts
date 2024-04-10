@@ -15,4 +15,4 @@ import { jwtConstants } from 'src/utils/jwt-config';
   controllers: [UpdateUserController],
   providers: [UpdateUserService, PrismaService],
 })
-export class UpdateUserModule { }
+export class UpdateUserModule {}

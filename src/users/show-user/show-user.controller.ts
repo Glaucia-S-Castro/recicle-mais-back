@@ -1,8 +1,8 @@
-import { Controller, Get, Headers} from '@nestjs/common';
+import { Controller, Get, Headers } from '@nestjs/common';
 import { ShowUserService } from './show-user-service';
-import { ApiBearerAuth, ApiOperation,  ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@ApiTags("Show User")
+@ApiTags('Show User')
 @Controller('user')
 @ApiBearerAuth()
 export class ShowUserController {

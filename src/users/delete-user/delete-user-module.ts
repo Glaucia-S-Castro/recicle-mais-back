@@ -15,4 +15,4 @@ import { JwtModule } from '@nestjs/jwt';
   controllers: [DeleteUserController],
   providers: [DeleteUserService, PrismaService],
 })
-export class DeleteUserModule { }
+export class DeleteUserModule {}
